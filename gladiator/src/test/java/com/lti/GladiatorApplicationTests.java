@@ -29,16 +29,16 @@ class GladiatorApplicationTests {
 	@Autowired
 	private RoutesRepository routesRepo;
 	
-	@Test
-	void addFlight() {
-		Flights flight = new Flights();
-		flight.setId(5);
-		flight.setAirlines("Go Air");
-		flight.setMaxSeats(60);
-		flight.setMaxBaggageKg(17);
-		
-		flightsRepo.addFlight(flight);
-	}
+//	@Test
+//	void addFlight() {
+//		Flights flight = new Flights();
+//		flight.setId(5);
+//		flight.setAirlines("Go Air");
+//		flight.setMaxSeats(60);
+//		flight.setMaxBaggageKg(17);
+//		
+//		flightsRepo.addFlight(flight);
+//	}
 	
 	@Test
 	void fetchFlight() {
@@ -46,22 +46,22 @@ class GladiatorApplicationTests {
 		System.out.println(flight.getAirlines()+" "+flight.getId()+" "+flight.getMaxSeats()+" "+flight.getMaxBaggageKg());
 	}
 	
-	@Test
-	void addRoute() {
-		Routes route = new Routes();
-		route.setId(107);
-		route.setSource("Pune");
-		route.setDestination("Chennai");
-		
-		routesRepo.addRoute(route);
-		
-		route = new Routes();
-		route.setId(108);
-		route.setSource("Chennai");
-		route.setDestination("Pune");
-		
-		routesRepo.addRoute(route);
-	}
+//	@Test
+//	void addRoute() {
+//		Routes route = new Routes();
+//		route.setId(107);
+//		route.setSource("Pune");
+//		route.setDestination("Chennai");
+//		
+//		routesRepo.addRoute(route);
+//		
+//		route = new Routes();
+//		route.setId(108);
+//		route.setSource("Chennai");
+//		route.setDestination("Pune");
+//		
+//		routesRepo.addRoute(route);
+//	}
 	
 	@Test
 	void fetchRoute() {

@@ -1,8 +1,11 @@
 package com.lti.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,9 @@ public class Flights {
 	
 	@Column(name = "max_baggage_kg")
 	private int maxBaggageKg;
+	
+	@OneToMany(mappedBy = "flight")
+	private List<FlightSchedule> flightSchedules;
 	
 	public int getId() {
 		return id;
@@ -45,4 +51,12 @@ public class Flights {
 		this.maxBaggageKg = maxBaggageKg;
 	}
 
+	public List<FlightSchedule> getFlightSchedules() {
+		return flightSchedules;
+	}
+	
+	public void setFlightSchedules(List<FlightSchedule> flightSchedules) {
+		this.flightSchedules = flightSchedules;
+	}
+	
 }

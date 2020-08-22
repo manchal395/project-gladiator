@@ -17,11 +17,6 @@ public class FlightsRepositoryImpl implements FlightsRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	@Override
-	@Transactional
-	public void addFlight(Flights flight) {
-		entityManager.merge(flight);
-	}
 	
 	@Override
 	public Flights fetchFlightById(int id) {
@@ -33,4 +28,12 @@ public class FlightsRepositoryImpl implements FlightsRepository {
 		return entityManager.createQuery("SELECT f FROM Flights f").getResultList();
 	}
 
+	@Override
+	public boolean isFlight(int id) {
+		return (Long) 
+				entityManager.createQuery("SELECT COUNT(f.id) FROM Flights f WHERE f.id = :id")
+				.setParameter("id", id)
+				.getSingleResult() == 1 ? true : false;
+	}
+	
 }
