@@ -2,30 +2,33 @@ package com.lti.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "FLIGHT_SCHEDULE")
 public class FlightSchedule {
-	
+
 	@Id
-	//@GeneratedValue
+	@SequenceGenerator(sequenceName = "fschedule_seq", allocationSize = 1, name = "seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	private int id;
-	
+
 	@OneToOne
 	@JoinColumn(name = "schedule_id")
 	private Schedule schedule;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "flight_id")
 	private Flights flight;
-	
+
 	private double economy;
-	
+
 	private double business;
 
 	public int getId() {
