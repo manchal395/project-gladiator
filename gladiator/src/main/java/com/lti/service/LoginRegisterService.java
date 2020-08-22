@@ -1,5 +1,11 @@
 package com.lti.service;
 
-public class LoginRegisterService {
+import com.lti.entity.Users;
+
+public interface LoginRegisterService {
+
+	void register(Users user);
+
+	Users login(String email, String password);
 
 }
