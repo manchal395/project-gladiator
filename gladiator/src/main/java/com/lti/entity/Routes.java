@@ -1,7 +1,10 @@
 package com.lti.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,9 @@ public class Routes {
 	
 	private String destination;
 	
+	@OneToMany(mappedBy = "route")
+	private List<Schedule> schedules;
+
 	public int getId() {
 		return id;
 	}
@@ -32,6 +38,12 @@ public class Routes {
 	}
 	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
 	}
 	
 }

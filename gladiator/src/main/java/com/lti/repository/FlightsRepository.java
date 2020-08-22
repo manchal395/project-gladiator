@@ -7,10 +7,10 @@ import com.lti.entity.Routes;
 
 public interface FlightsRepository {
 
-	void addFlight(Flights flight);
-
 	Flights fetchFlightById(int id);
 	
 	List<Flights> fetchAllFlights();
+
+	boolean isFlight(int id);
 	
 }
