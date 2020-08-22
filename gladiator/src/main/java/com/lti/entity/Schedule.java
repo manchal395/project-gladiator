@@ -4,9 +4,11 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,15 +16,16 @@ import javax.persistence.Table;
 public class Schedule {
 
 	@Id
-	//@GeneratedValue
+	@SequenceGenerator(sequenceName = "schedule_seq", allocationSize = 1, name = "seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	private int id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "route_id")
 	private Routes route;
-	
+
 	private LocalDateTime depart;
-	
+
 	private LocalDateTime arrive;
 
 	public int getId() {
@@ -56,5 +59,5 @@ public class Schedule {
 	public void setArrive(LocalDateTime arrive) {
 		this.arrive = arrive;
 	}
-	
+
 }
