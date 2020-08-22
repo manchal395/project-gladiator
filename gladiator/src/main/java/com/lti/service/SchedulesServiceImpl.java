@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,7 @@ public class SchedulesServiceImpl implements SchedulesService {
 	}
 	
 	@Override
+	@Transactional
 	public void addFlight(Schedule schedule, FlightSchedule flightSchedule) {
 		System.out.println("adding schedule...");
 		schedule.setId(1111);
@@ -49,8 +52,7 @@ public class SchedulesServiceImpl implements SchedulesService {
 		flightSchedule.setSchedule(schedule);
 		flightSchedule.setId(202);
 		System.out.println("flight schedule added");
-		schedulesRepo.addFlightSchedule(flightSchedule);
-		
+		schedulesRepo.addFlightSchedule(flightSchedule);	
 	}
 
 }

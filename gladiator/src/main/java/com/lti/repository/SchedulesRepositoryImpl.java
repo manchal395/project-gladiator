@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,13 +22,11 @@ public class SchedulesRepositoryImpl implements SchedulesRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	@Transactional
 	public void addSchedule(Schedule schedule) {
 		entityManager.merge(schedule);
 	}
 	
 	@Override
-	@Transactional
 	public void addFlightSchedule(FlightSchedule flightSchedule) {
 		entityManager.merge(flightSchedule);
 	}
