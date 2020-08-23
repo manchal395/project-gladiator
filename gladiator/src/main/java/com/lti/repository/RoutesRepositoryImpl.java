@@ -15,12 +15,7 @@ public class RoutesRepositoryImpl implements RoutesRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	@Override
-	@Transactional
-	public void addRoute(Routes route) {
-		entityManager.merge(route);
-	}
+
 	
 	@Override
 	public Routes fetchRouteById(int id) {
@@ -30,6 +25,14 @@ public class RoutesRepositoryImpl implements RoutesRepository {
 	@Override
 	public List<Routes> fetchAllRoutes() {
 		return entityManager.createQuery("SELECT r FROM Routes r").getResultList();
+	}
+	
+	@Override
+	public Routes fetchRoute(String fromCity, String toCity) {
+		return (Routes) entityManager.createQuery("SELECT r FROM Routes r WHERE r.source = :f AND r.destination = :t")
+				.setParameter("f", fromCity)
+				.setParameter("t", toCity)
+				.getSingleResult();
 	}
 	
 }
