@@ -12,7 +12,7 @@ public class Admin {
 	@Id
 	private int id;
 	
-	@Column(name = "full_name")
+	@Column(name = "FULL_NAME")
 	private String fullName;
 	
 	private String email;

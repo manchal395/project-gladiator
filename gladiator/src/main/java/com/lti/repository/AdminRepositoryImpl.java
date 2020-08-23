@@ -18,11 +18,8 @@ public class AdminRepositoryImpl implements AdminRepository {
 	}
 	
 	@Override
-	public int findByUsernamePassword(String email, String password) {
-		return (Integer) entityManager.createQuery("select a.id from Admin a where a.email = :email and a.password = :password")
-				.setParameter("email", email)
-				.setParameter("password", password)
-				.getSingleResult();
+	public int findByAdminUsernamePassword(String email, String password) {
+		return (Integer) entityManager.createQuery("select a.id from Admin a where a.email = :email and a.password = :password").setParameter("email", email).setParameter("password", password).getSingleResult();
 	}
 
 

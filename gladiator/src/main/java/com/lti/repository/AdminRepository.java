@@ -6,6 +6,6 @@ public interface AdminRepository {
 
 	Admin fetchAdminById(int id);
 
-	int findByUsernamePassword(String email, String password);
+	int findByAdminUsernamePassword(String email, String password);
 
 }

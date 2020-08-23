@@ -17,7 +17,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	@Override
 	public  Admin login(String email,String password) {
 		try {
-			int id=adminRepository.findByUsernamePassword(email, password);
+			int id=adminRepository.findByAdminUsernamePassword(email, password);
 			Admin admin=adminRepository.fetchAdminById(id);
 			return admin;
 		}
