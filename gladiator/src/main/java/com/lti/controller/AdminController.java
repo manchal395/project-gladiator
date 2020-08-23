@@ -1,6 +1,7 @@
 package com.lti.controller;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,10 +94,20 @@ public class AdminController {
 	public Status deleteFlight(@RequestBody Integer id) {
 		Status s = new Status();
 		//System.out.println(id);
+		
+		List<FlightSchedule> list = schedulesService.isDeleteFlightPossible((int) id);
+
+		if (list.isEmpty()) {
+			s.setStatus(StatusType.FAILURE);
+			s.setMessage("Flight Id does not exist. Enter correct Flight Id");
+			return s;
+		}
+		
 		schedulesService.deleteFlight((int)id);
 		s.setStatus(StatusType.SUCCESS);
 		s.setMessage("Flight Status Changed Successfully");
 		return s;
+		
 		
 	}
 	
