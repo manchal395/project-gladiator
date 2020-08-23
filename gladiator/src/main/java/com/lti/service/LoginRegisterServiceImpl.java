@@ -14,6 +14,7 @@ public class LoginRegisterServiceImpl implements LoginRegisterService   {
 	@Autowired
 	private UsersRepository usersRepo;
 	
+	
 	@Override
 	public void register(Users user) {
 		if(!usersRepo.isUserPresent(user.getEmail())) {
@@ -26,14 +27,14 @@ public class LoginRegisterServiceImpl implements LoginRegisterService   {
 	
 	@Override
 	public  Users login(String email,String password) {
-		try {
+		//try {
 			int id=usersRepo.findByUsernamePassword(email, password);
 			Users user=usersRepo.fetchUserById(id);
 			return user;
-		}
-		catch(EmptyResultDataAccessException e) {
+		//}
+		/*catch(EmptyResultDataAccessException e) {
 			throw new UsersServiceException(" Invalid username/password");
-		}
+		}*/
 		
 	}
 	

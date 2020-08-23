@@ -45,5 +45,12 @@ public class SchedulesRepositoryImpl implements SchedulesRepository {
 	public int fetchScheduleId() {
 		return (int) entityManager.createQuery("SELECT MAX(s.id) FROM Schedule s").getSingleResult();
 	}
+	
+	@Override
+	public List<FlightSchedule> fetchFlightScheduleById(int id) {
+		return entityManager.createQuery("SELECT fs FROM FlightSchedule fs WHERE fs.flight.id = :id")
+				.setParameter("id",	id)
+				.getResultList();
+	}
 
 }
