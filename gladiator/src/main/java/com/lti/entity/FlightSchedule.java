@@ -30,6 +30,8 @@ public class FlightSchedule {
 	private double economy;
 
 	private double business;
+	
+	private String status = "AVAILABLE";
 
 	public int getId() {
 		return id;
@@ -69,6 +71,14 @@ public class FlightSchedule {
 
 	public void setBusiness(double business) {
 		this.business = business;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

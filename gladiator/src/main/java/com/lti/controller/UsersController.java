@@ -6,13 +6,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.LoginDto;
+import com.lti.entity.Admin;
 import com.lti.entity.Users;
 import com.lti.exception.UsersServiceException;
+import com.lti.service.AdminLoginService;
 import com.lti.service.LoginRegisterServiceImpl;
 
 @RestController
 @CrossOrigin
 public class UsersController {
+	@Autowired
+	private AdminLoginService adminLoginService;
+
 	@Autowired
 	private  LoginRegisterServiceImpl loginRegisterService;
 		
@@ -36,15 +42,37 @@ public class UsersController {
 		}
 	}
 	@PostMapping(path="/login",consumes = "application/json")
-	public LoginStatus login(@RequestBody Users users) {
+	public LoginStatus login(@RequestBody LoginDto loginDto  ) {
 		try {
-			Users user = loginRegisterService.login(users.getEmail(),users.getPassword());
-			LoginStatus loginStatus = new LoginStatus();
-			loginStatus.setStatus(Status.StatusType.SUCCESS);
-			loginStatus.setMessage("Login Successful!");
-			loginStatus.setUserId(user.getId());
-			loginStatus.setName(user.getFullName());
-			return loginStatus;
+
+			int flag=0;
+
+			try {
+				Users user = loginRegisterService.login(loginDto.getEmail(),loginDto.getPassword());
+				LoginStatus loginStatus = new LoginStatus();
+				loginStatus.setUserType(LoginStatus.UserType.USER);
+				loginStatus.setStatus(Status.StatusType.SUCCESS);
+				loginStatus.setMessage("Login Successful!");
+				loginStatus.setUserId(user.getId());
+				loginStatus.setName(user.getFullName());
+				return loginStatus;			
+
+			}
+			catch (Exception e) {
+				flag=1;
+			}
+			if(flag==1) {
+				Admin admin= adminLoginService.login(loginDto.getEmail(),loginDto.getPassword());
+				LoginStatus loginStatus = new LoginStatus();
+				loginStatus.setUserType(LoginStatus.UserType.ADMIN);
+				loginStatus.setStatus(Status.StatusType.SUCCESS);
+				loginStatus.setMessage("Login Successful!");
+				loginStatus.setUserId(admin.getId());
+				loginStatus.setName(admin.getFullName());
+				return loginStatus;			
+			
+			}
+			return null;
 		}
 		catch(Exception e) { 
 			LoginStatus status = new LoginStatus();
@@ -64,6 +92,20 @@ public class UsersController {
 	public static class LoginStatus extends Status{
 		private int userId;
 		private String name;
+		private  UserType userType;
+		
+		public static enum UserType{
+			ADMIN,USER;
+		}
+		
+		
+
+		public UserType getUserType() {
+			return userType;
+		}
+		public void setUserType(UserType userType) {
+			this.userType = userType;
+		}
 		public int getUserId() {
 			return userId;
 		}
@@ -86,6 +128,7 @@ public class UsersController {
 	public static class Status {
 		private StatusType status;
 		private String message;
+		
 		
 		public static enum StatusType{
 			SUCCESS, FAILURE;

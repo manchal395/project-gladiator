@@ -13,4 +13,6 @@ public interface SchedulesService {
 
 	Routes getRoute(String fromCity, String toCity);
 
+	void deleteFlight(int id);
+
 }

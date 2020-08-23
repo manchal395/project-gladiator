@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,18 @@ public class SchedulesServiceImpl implements SchedulesService {
 		// flightSchedule.setId(203);
 		// System.out.println("flight schedule added");
 		schedulesRepo.addFlightSchedule(flightSchedule);
+	}
+	
+	@Override
+	@Transactional
+	public void deleteFlight(int id) {
+		//fetching all schedules for this particular flight id
+		List<FlightSchedule> fschedules = schedulesRepo.fetchFlightScheduleById(id);
+		//changing status of all those schedules and updating in db
+		for(FlightSchedule fs : fschedules) {
+			fs.setStatus("UNAVAILABLE");
+			schedulesRepo.addFlightSchedule(fs);
+		}
 	}
 
 }
