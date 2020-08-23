@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.controller.AdminController.Status.StatusType;
@@ -88,6 +89,17 @@ public class AdminController {
 
 	}
 
+	@PostMapping("/deleteFlight")
+	public Status deleteFlight(@RequestBody Integer id) {
+		Status s = new Status();
+		//System.out.println(id);
+		schedulesService.deleteFlight((int)id);
+		s.setStatus(StatusType.SUCCESS);
+		s.setMessage("Flight Status Changed Successfully");
+		return s;
+		
+	}
+	
 	public static class Status {
 
 		private StatusType status;
