@@ -17,4 +17,6 @@ public interface SchedulesRepository {
 
 	int fetchScheduleId();
 
+	List<FlightSchedule> fetchFlightScheduleById(int id);
+
 }
