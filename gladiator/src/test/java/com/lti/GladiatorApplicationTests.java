@@ -1,5 +1,9 @@
 package com.lti;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -7,10 +11,12 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
+import com.lti.dto.SearchFlightDto;
 import com.lti.entity.Flights;
 import com.lti.entity.Routes;
 import com.lti.repository.FlightsRepository;
 import com.lti.repository.RoutesRepository;
+import com.lti.repository.SchedulesRepository;
 
 /* TODO
  * 1. why Rollback?
@@ -28,6 +34,9 @@ class GladiatorApplicationTests {
 	
 	@Autowired
 	private RoutesRepository routesRepo;
+	
+	@Autowired
+	private SchedulesRepository schedulesRepo;
 	
 //	@Test
 //	void addFlight() {
@@ -67,6 +76,21 @@ class GladiatorApplicationTests {
 	void fetchRoute() {
 		Routes route = routesRepo.fetchRouteById(103);
 		System.out.println(route.getId()+" "+route.getSource()+" "+route.getDestination());
+	}
+	
+	@Test
+	void fetchSearchedFlights() {
+		SearchFlightDto s = new SearchFlightDto();
+		s.setSource("Delhi");
+		s.setDestination("Pune");
+		s.setDepart(LocalDate.of(2020, 8, 24));
+		//System.out.println("Date: " + s.getDepart().toString());
+		List<Object[]> list = schedulesRepo.fetchSearchedFlights(s);
+		for(Object[] o : list)
+			System.out.println(o[0]+" "+o[1]+" "+o[2]+" "+o[3]+" "+o[4]+" "+o[5]+" "+o[6]+" "+o[7]);
+//		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		System.out.println("Date: " +s.getDepart().format(format).toString());
+		
 	}
 
 }

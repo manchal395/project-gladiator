@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lti.dto.SearchFlightDto;
 import com.lti.entity.FlightSchedule;
 import com.lti.entity.Flights;
 import com.lti.entity.Routes;
@@ -74,4 +75,9 @@ public class SchedulesServiceImpl implements SchedulesService {
 		}
 	}
 
+	@Override
+	public List<Object[]> fetchFlightSchedules(SearchFlightDto sfdto) {
+		return schedulesRepo.fetchSearchedFlights(sfdto);
+	}
+	
 }

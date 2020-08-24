@@ -2,6 +2,7 @@ package com.lti.repository;
 
 import java.util.List;
 
+import com.lti.dto.SearchFlightDto;
 import com.lti.entity.FlightSchedule;
 import com.lti.entity.Schedule;
 
@@ -18,5 +19,7 @@ public interface SchedulesRepository {
 	int fetchScheduleId();
 
 	List<FlightSchedule> fetchFlightScheduleById(int id);
+
+	List<Object[]> fetchSearchedFlights(SearchFlightDto sfdto);
 
 }
