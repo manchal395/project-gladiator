@@ -83,7 +83,7 @@ class GladiatorApplicationTests {
 		SearchFlightDto s = new SearchFlightDto();
 		s.setSource("Delhi");
 		s.setDestination("Pune");
-		s.setDepart(LocalDate.of(2020, 8, 24));
+		s.setDepart(LocalDate.of(2020, 8, 25));
 		//System.out.println("Date: " + s.getDepart().toString());
 		List<Object[]> list = schedulesRepo.fetchSearchedFlights(s);
 		for(Object[] o : list)
