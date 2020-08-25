@@ -36,6 +36,11 @@ public class SchedulesServiceImpl implements SchedulesService {
 	}
 
 	@Override
+	public List<FlightSchedule> isDeleteFlightPossible(int fid) {
+		return schedulesRepo.fetchFlightScheduleById(fid);
+	}
+	
+	@Override
 	public Routes getRoute(String fromCity, String toCity) {
 		return routesRepo.fetchRoute(fromCity, toCity);
 	}
