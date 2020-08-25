@@ -4,13 +4,18 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="USERS")
 public class Users {
 	@Id
+	@SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	private int id;
 	
 	@Column(name = "full_name")

@@ -1,5 +1,7 @@
 package com.lti.controller;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +50,9 @@ public class UsersController {
 			int flag=0;
 
 			try {
+				String tempPassword=loginDto.getPassword();
+				String encodedPassword=Base64.getEncoder().withoutPadding().encodeToString(tempPassword.getBytes());		
+				loginDto.setPassword(encodedPassword);
 				Users user = loginRegisterService.login(loginDto.getEmail(),loginDto.getPassword());
 				LoginStatus loginStatus = new LoginStatus();
 				loginStatus.setUserType(LoginStatus.UserType.USER);
@@ -110,7 +115,7 @@ public class UsersController {
 			return userId;
 		}
 		public void setUserId(int userId) {
-			this.userId = userId;
+			this.userId =userId;
 		}
 		public String getName() {
 			return name;
