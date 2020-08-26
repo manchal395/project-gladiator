@@ -1,12 +1,9 @@
 package com.lti.service;
 
-import com.lti.entity.Booking;
-import com.lti.entity.Passengers;
+import com.lti.dto.AddBookingDto;
 
 public interface BookingPassengerService {
 
-	void addBooking(Booking booking, Passengers passengers);
-
-	void addBookingOnly(Booking booking);
+	void addBookingAndPassengers(AddBookingDto bookingDto, int id);
 
 }

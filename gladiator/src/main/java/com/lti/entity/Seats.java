@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,6 +28,9 @@ public class Seats {
 	
 	@Column(name = "class")
 	private String classType;
+	
+	@OneToOne(mappedBy = "seat")
+	private Passengers passenger;
 
 	public int getId() {
 		return id;
@@ -58,6 +62,14 @@ public class Seats {
 
 	public void setClassType(String classType) {
 		this.classType = classType;
+	}
+
+	public Passengers getPassenger() {
+		return passenger;
+	}
+
+	public void setPassenger(Passengers passenger) {
+		this.passenger = passenger;
 	}
 	
 }
