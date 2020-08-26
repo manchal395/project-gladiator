@@ -52,7 +52,7 @@ public class UsersController {
 			try {
 				String tempPassword=loginDto.getPassword();
 				String encodedPassword=Base64.getEncoder().withoutPadding().encodeToString(tempPassword.getBytes());		
-				//loginDto.setPassword(encodedPassword);
+				loginDto.setPassword(encodedPassword);
 				Users user = loginRegisterService.login(loginDto.getEmail(),loginDto.getPassword());
 				LoginStatus loginStatus = new LoginStatus();
 				loginStatus.setUserType(LoginStatus.UserType.USER);
