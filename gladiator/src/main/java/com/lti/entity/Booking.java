@@ -47,6 +47,16 @@ public class Booking {
 	
 	@Column(name = "amount")
 	private double bookingAmount;
+	
+	private String status;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@OneToMany(mappedBy="booking")
 	private List<Passengers> passengers;
