@@ -6,6 +6,7 @@ public class FetchedFlightsDto {
 	
 	private String airlines;
 	private int id;
+	private int fsId;
 	private double economy;
 	private double business;
 	private String source;
@@ -61,5 +62,11 @@ public class FetchedFlightsDto {
 	public void setArrive(LocalDateTime arrive) {
 		this.arrive = arrive;
 	}
-
+	public int getFsId() {
+		return fsId;
+	}
+	public void setFsId(int fsId) {
+		this.fsId = fsId;
+	}
+	
 }

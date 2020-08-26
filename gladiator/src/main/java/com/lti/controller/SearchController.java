@@ -46,12 +46,13 @@ public class SearchController {
 			ff = new FetchedFlightsDto();
 			ff.setAirlines(obj[0].toString());
 			ff.setId((int)obj[1]);
-			ff.setEconomy((double)obj[2]);
-			ff.setBusiness((double)obj[3]);
-			ff.setSource(obj[4].toString());
-			ff.setDestination(obj[5].toString());
-			ff.setDepart((LocalDateTime) obj[6]);
-			ff.setArrive((LocalDateTime) obj[7]);		
+			ff.setFsId((int)obj[2]);
+			ff.setEconomy((double)obj[3]);
+			ff.setBusiness((double)obj[4]);
+			ff.setSource(obj[5].toString());
+			ff.setDestination(obj[6].toString());
+			ff.setDepart((LocalDateTime) obj[7]);
+			ff.setArrive((LocalDateTime) obj[8]);		
 			flightsList.add(ff);
 		}
 		return flightsList;

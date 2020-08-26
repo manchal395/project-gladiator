@@ -71,7 +71,7 @@ public class SchedulesRepositoryImpl implements SchedulesRepository {
 	
 	@Override
 	public List<Object[]> fetchSearchedFlights(SearchFlightDto sfdto, int bs, int es) {
-		return entityManager.createQuery("SELECT f.airlines, f.id, fs.economy, fs.business, r.source, r.destination, s.depart, s.arrive "
+		return entityManager.createQuery("SELECT f.airlines, f.id, fs.id, fs.economy, fs.business, r.source, r.destination, s.depart, s.arrive "
 				+ "FROM FlightSchedule fs INNER JOIN fs.flight f INNER JOIN fs.schedule s INNER JOIN fs.schedule.route r "
 				+ "WHERE r.source = :from AND r.destination = :to AND TRUNC(s.depart) = TRUNC(:dept) AND fs.status = :st AND fs.economySeatsAvailable >= :es "
 				+ "AND fs.businessSeatsAvailable >= :bs ORDER BY s.depart")
