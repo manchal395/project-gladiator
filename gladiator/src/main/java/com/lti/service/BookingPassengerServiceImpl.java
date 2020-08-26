@@ -12,6 +12,7 @@ import com.lti.entity.Booking;
 import com.lti.entity.FlightSchedule;
 import com.lti.entity.Passengers;
 import com.lti.entity.Users;
+import com.lti.exception.BookingServiceException;
 import com.lti.repository.BookingPassengerRepository;
 import com.lti.repository.SchedulesRepository;
 import com.lti.repository.SeatsRepository;
@@ -34,7 +35,7 @@ public class BookingPassengerServiceImpl implements BookingPassengerService {
 	@Override
 	@Transactional
 	public void addBookingAndPassengers(AddBookingDto bookingDto, int id) {
-		
+		try {
 		Booking booking = new Booking();
 		FlightSchedule fs = schedulesRepo.fetchSingleFlightScheduleById(id);
 		Users user = userRepo.fetchUserById(bookingDto.getUserId());
@@ -73,6 +74,10 @@ public class BookingPassengerServiceImpl implements BookingPassengerService {
 			fs.setBusinessSeatsAvailable(fs.getBusinessSeatsAvailable() - bookingDto.getNoOfPassengers());
 		else
 			fs.setEconomySeatsAvailable(fs.getEconomySeatsAvailable() - bookingDto.getNoOfPassengers());
+		}
+		catch(Exception e) {
+			throw new BookingServiceException("Booking Failed!");
+		}
 		
 	}
 	
