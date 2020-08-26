@@ -26,14 +26,19 @@ public class SearchController {
 	public List<FetchedFlightsDto> getSearchedFlights(@RequestBody SearchFlightDto sfdto) {
 		
 		List<FetchedFlightsDto> flightsList = new ArrayList<FetchedFlightsDto>();
-		List<Object[]> flights = schedulesService.fetchFlightSchedules(sfdto);
+		int bs=0, es=0;
+		if(sfdto.getFclass().equalsIgnoreCase("Business"))
+			bs = sfdto.getNoOfPassengers();
+		else
+			es = sfdto.getNoOfPassengers();
+		List<Object[]> flights = schedulesService.fetchFlightSchedules(sfdto, bs, es);
 		
 		if(sfdto.getArrive()!=null) {
 			String temp = sfdto.getSource();
 			sfdto.setSource(sfdto.getDestination());
 			sfdto.setDestination(temp);
 			sfdto.setDepart(sfdto.getArrive());
-			flights.addAll(schedulesService.fetchFlightSchedules(sfdto));
+			flights.addAll(schedulesService.fetchFlightSchedules(sfdto, bs, es));
 		}
 		
 		FetchedFlightsDto ff;

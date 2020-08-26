@@ -20,6 +20,6 @@ public interface SchedulesService {
 
 	List<FlightSchedule> isDeleteFlightPossible(int fid);
 
-	List<Object[]> fetchFlightSchedules(SearchFlightDto sfdto);
+	List<Object[]> fetchFlightSchedules(SearchFlightDto sfdto, int bs, int es);
 
 }
