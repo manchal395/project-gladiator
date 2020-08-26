@@ -6,4 +6,8 @@ public interface SeatsRepository {
 
 	void addSeat(Seats seat);
 
+	Seats fetchSeat(int fsId, String fclass);
+
+	void changeSeatStatus(Seats seat);
+
 }

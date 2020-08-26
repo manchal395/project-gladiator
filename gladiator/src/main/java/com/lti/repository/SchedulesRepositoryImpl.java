@@ -63,6 +63,13 @@ public class SchedulesRepositoryImpl implements SchedulesRepository {
 	}
 
 	@Override
+	public FlightSchedule fetchSingleFlightScheduleById(int id) {
+		return (FlightSchedule) entityManager.createQuery("SELECT fs FROM FlightSchedule fs WHERE fs.id = :id")
+				.setParameter("id",	id)
+				.getSingleResult();
+	}
+	
+	@Override
 	public List<Object[]> fetchSearchedFlights(SearchFlightDto sfdto, int bs, int es) {
 		return entityManager.createQuery("SELECT f.airlines, f.id, fs.economy, fs.business, r.source, r.destination, s.depart, s.arrive "
 				+ "FROM FlightSchedule fs INNER JOIN fs.flight f INNER JOIN fs.schedule s INNER JOIN fs.schedule.route r "

@@ -1,6 +1,6 @@
 package com.lti.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,24 +24,29 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	private int id;
 	
-	@Column(name="user_id")
-	private int userId;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private Users user;
 	
-	@Column(name="flight_schedule_id")
-	private int flightScheduleId;
+	@ManyToOne
+	@JoinColumn(name="fs_id")
+	private FlightSchedule flightSchedule;
 	
-	@Column(name="booking_date")
-	private LocalDate bookingDate;
+	@Column(name="booking_datetime")
+	private LocalDateTime bookingDateTime;
 	
-	@SequenceGenerator(sequenceName = "pnr_seq", allocationSize = 1, name = "per")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "per")// doubt: how to generate pnr automatically // idea: creating a static variable globally.
-	private int pnr;
-
+//	@SequenceGenerator(sequenceName = "pnr_seq", allocationSize = 1, name = "per")
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "per")// doubt: how to generate pnr automatically // idea: creating a static variable globally.
+//	private int pnr;
+	
 	@Column(name="total_passengers")
 	private int totalPassengers;
 	
-	@Column(name="transaction_id")
-	private int transactionId;
+//	@Column(name="transaction_id")
+//	private int transactionId;
+	
+	@Column(name = "amount")
+	private double bookingAmount;
 
 	@OneToMany(mappedBy="booking")
 	private List<Passengers> passengers;
@@ -51,36 +59,28 @@ public class Booking {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public Users getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
-	public int getFlightScheduleId() {
-		return flightScheduleId;
+	public FlightSchedule getFlightSchedule() {
+		return flightSchedule;
 	}
 
-	public void setFlightScheduleId(int flightScheduleId) {
-		this.flightScheduleId = flightScheduleId;
+	public void setFlightSchedule(FlightSchedule flightSchedule) {
+		this.flightSchedule = flightSchedule;
 	}
 
-	public LocalDate getBookingDate() {
-		return bookingDate;
+	public LocalDateTime getBookingDateTime() {
+		return bookingDateTime;
 	}
 
-	public void setBookingDate(LocalDate bookingDate) {
-		this.bookingDate = bookingDate;
-	}
-
-	public int getPnr() {
-		return pnr;
-	}
-
-	public void setPnr(int pnr) {
-		this.pnr = pnr;
+	public void setBookingDateTime(LocalDateTime bookingDateTime) {
+		this.bookingDateTime = bookingDateTime;
 	}
 
 	public int getTotalPassengers() {
@@ -91,12 +91,12 @@ public class Booking {
 		this.totalPassengers = totalPassengers;
 	}
 
-	public int getTransactionId() {
-		return transactionId;
+	public double getBookingAmount() {
+		return bookingAmount;
 	}
 
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
+	public void setBookingAmount(double bookingAmount) {
+		this.bookingAmount = bookingAmount;
 	}
 
 	public List<Passengers> getPassengers() {

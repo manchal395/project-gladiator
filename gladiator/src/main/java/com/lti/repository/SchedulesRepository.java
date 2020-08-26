@@ -24,4 +24,6 @@ public interface SchedulesRepository {
 
 	List<Object[]> fetchSearchedFlights(SearchFlightDto sfdto, int bs, int es);
 
+	FlightSchedule fetchSingleFlightScheduleById(int id);
+
 }

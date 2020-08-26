@@ -45,6 +45,17 @@ public class FlightSchedule {
 	
 	@OneToMany(mappedBy = "flightSchedule")
 	private List<Seats> seats;
+	
+	@OneToMany(mappedBy = "flightSchedule")
+	private List<Booking> bookings;
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
 
 	public int getId() {
 		return id;

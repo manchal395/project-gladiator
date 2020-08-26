@@ -6,13 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.entity.Booking;
 import com.lti.entity.Passengers;
 
 @Repository
-public class BookingRepositoryImpl implements BookingRepository {
+public class BookingPassengerRepositoryImpl implements BookingPassengerRepository {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -33,10 +32,8 @@ public class BookingRepositoryImpl implements BookingRepository {
 	}
 	
 	@Override
-	public int fetchPnr() {
-		return (int)entityManager.createQuery("select max(b.pnr) from booking b").getSingleResult();
+	public int fetchBookingScheduleId() {
+		return (int) entityManager.createQuery("SELECT MAX(b.id) FROM Booking b").getSingleResult();
 	}
-	
-	
 
 }
