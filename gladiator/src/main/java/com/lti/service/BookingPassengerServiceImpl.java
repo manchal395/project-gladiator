@@ -43,6 +43,7 @@ public class BookingPassengerServiceImpl implements BookingPassengerService {
 		booking.setBookingDateTime(LocalDateTime.now());
 		booking.setTotalPassengers(bookingDto.getNoOfPassengers());
 		booking.setBookingAmount(bookingDto.getAmount());
+		booking.setStatus("CONFIRMED");
 		
 		bookingRepo.addBooking(booking);
 		
