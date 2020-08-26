@@ -80,14 +80,14 @@ class GladiatorApplicationTests {
 	
 	@Test
 	void fetchSearchedFlights() {
-		SearchFlightDto s = new SearchFlightDto();
-		s.setSource("Delhi");
-		s.setDestination("Pune");
-		s.setDepart(LocalDate.of(2020, 8, 25));
-		//System.out.println("Date: " + s.getDepart().toString());
-		List<Object[]> list = schedulesRepo.fetchSearchedFlights(s);
-		for(Object[] o : list)
-			System.out.println(o[0]+" "+o[1]+" "+o[2]+" "+o[3]+" "+o[4]+" "+o[5]+" "+o[6]+" "+o[7]);
+//		SearchFlightDto s = new SearchFlightDto();
+//		s.setSource("Delhi");
+//		s.setDestination("Pune");
+//		s.setDepart(LocalDate.of(2020, 8, 25));
+//		//System.out.println("Date: " + s.getDepart().toString());
+//		List<Object[]> list = schedulesRepo.fetchSearchedFlights(s);
+//		for(Object[] o : list)
+//			System.out.println(o[0]+" "+o[1]+" "+o[2]+" "+o[3]+" "+o[4]+" "+o[5]+" "+o[6]+" "+o[7]);
 //		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 //		System.out.println("Date: " +s.getDepart().format(format).toString());
 		

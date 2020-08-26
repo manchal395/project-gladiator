@@ -12,9 +12,11 @@ import com.lti.entity.FlightSchedule;
 import com.lti.entity.Flights;
 import com.lti.entity.Routes;
 import com.lti.entity.Schedule;
+import com.lti.entity.Seats;
 import com.lti.repository.FlightsRepository;
 import com.lti.repository.RoutesRepository;
 import com.lti.repository.SchedulesRepository;
+import com.lti.repository.SeatsRepository;
 
 @Service
 public class SchedulesServiceImpl implements SchedulesService {
@@ -30,6 +32,9 @@ public class SchedulesServiceImpl implements SchedulesService {
 
 	@Autowired
 	private RoutesRepository routesRepo;
+	
+	@Autowired
+	private SeatsRepository seatsRepo;
 
 	@Override
 	public Flights isAddFlightPossible(int fid) {
@@ -61,6 +66,24 @@ public class SchedulesServiceImpl implements SchedulesService {
 		// flightSchedule.setId(203);
 		// System.out.println("flight schedule added");
 		schedulesRepo.addFlightSchedule(flightSchedule);
+		//add seats
+		int fsid = schedulesRepo.fetchFlightScheduleId();
+		flightSchedule.setId(fsid);
+		Seats seat = null;
+		for(int i=0; i<flightSchedule.getBusinessSeatsAvailable(); i++) {
+			seat = new Seats();
+			seat.setFlightSchedule(flightSchedule);
+			seat.setClassType("BUSINESS");
+			seat.setStatus("AVAILABLE");
+			seatsRepo.addSeat(seat);
+		}
+		for(int i=0; i<flightSchedule.getEconomySeatsAvailable(); i++) {
+			seat = new Seats();
+			seat.setFlightSchedule(flightSchedule);
+			seat.setClassType("ECONOMY");
+			seat.setStatus("AVAILABLE");
+			seatsRepo.addSeat(seat);
+		}
 	}
 	
 	@Override
@@ -76,8 +99,8 @@ public class SchedulesServiceImpl implements SchedulesService {
 	}
 
 	@Override
-	public List<Object[]> fetchFlightSchedules(SearchFlightDto sfdto) {
-		return schedulesRepo.fetchSearchedFlights(sfdto);
+	public List<Object[]> fetchFlightSchedules(SearchFlightDto sfdto, int bs, int es) {
+		return schedulesRepo.fetchSearchedFlights(sfdto, bs, es);
 	}
 	
 }
