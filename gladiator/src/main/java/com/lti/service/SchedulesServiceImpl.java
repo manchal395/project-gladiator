@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.lti.dto.SearchFlightDto;
@@ -13,6 +14,7 @@ import com.lti.entity.Flights;
 import com.lti.entity.Routes;
 import com.lti.entity.Schedule;
 import com.lti.entity.Seats;
+import com.lti.exception.FetchFlightsException;
 import com.lti.repository.FlightsRepository;
 import com.lti.repository.RoutesRepository;
 import com.lti.repository.SchedulesRepository;
@@ -100,7 +102,12 @@ public class SchedulesServiceImpl implements SchedulesService {
 
 	@Override
 	public List<Object[]> fetchFlightSchedules(SearchFlightDto sfdto, int bs, int es) {
-		return schedulesRepo.fetchSearchedFlights(sfdto, bs, es);
+		try {
+			return schedulesRepo.fetchSearchedFlights(sfdto, bs, es);
+		}
+		catch(Exception e) {
+			throw new FetchFlightsException("FLIGHTS NOT FOUND");
+		}
 	}
 	
 }
