@@ -1,6 +1,7 @@
 package com.lti.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,11 @@ public class BookingPassengerServiceImpl implements BookingPassengerService {
 		else
 			fs.setEconomySeatsAvailable(fs.getEconomySeatsAvailable() - bookingDto.getNoOfPassengers());
 		
+	}
+	@Override
+	@Transactional
+	public List<Object[]> getAllPassengers(int id){
+		return bookingRepo.viewBooking(id);
 	}
 	
 	

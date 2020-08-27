@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import com.lti.dto.ViewBookingDto;
 import com.lti.entity.Booking;
 import com.lti.entity.Passengers;
 
@@ -35,5 +36,8 @@ public class BookingPassengerRepositoryImpl implements BookingPassengerRepositor
 	public int fetchBookingScheduleId() {
 		return (int) entityManager.createQuery("SELECT MAX(b.id) FROM Booking b").getSingleResult();
 	}
-
+	@Override
+	public List<Object[]> viewBooking( int id){
+		return entityManager.createQuery("SELECT b.id, b.bookingDateTime,b.totalPassengers, b.bookingAmount, b.status, s.depart, s.arrive, r.source, r.destination FROM Booking b INNER JOIN b.flightSchedule fs INNER JOIN b.flightSchedule.schedule s  INNER JOIN b.flightSchedule.schedule.route r INNER JOIN b.user u WHERE u.id = :id").setParameter("id", id).getResultList();
+	}
 }

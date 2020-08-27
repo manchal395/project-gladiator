@@ -15,4 +15,6 @@ public interface BookingPassengerRepository {
 
 	int fetchBookingScheduleId();
 
+	List<Object[]> viewBooking( int id);
+
 }
