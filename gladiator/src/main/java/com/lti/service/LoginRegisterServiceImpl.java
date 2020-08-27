@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class LoginRegisterServiceImpl implements LoginRegisterService   {
 	@Override
 	public void register(Users user) {
 		if(!usersRepo.isUserPresent(user.getEmail())) {
+			String tempPassword=user.getPassword();
+			String encodedPassword=Base64.getEncoder().withoutPadding().encodeToString(tempPassword.getBytes());		
+			user.setPassword(encodedPassword);
 			usersRepo.addUsers(user);
 		}
 		else {

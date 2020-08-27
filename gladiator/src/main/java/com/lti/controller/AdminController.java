@@ -50,11 +50,14 @@ public class AdminController {
 
 		FlightSchedule flightSchedule = new FlightSchedule();
 		flightSchedule.setFlight(flight);
-
-		// set price acc to Weekend & Travel hours
+		int businessSeats = flight.getMaxSeats()/3;
+		int economySeats = flight.getMaxSeats() - businessSeats;
+		flightSchedule.setBusinessSeatsAvailable(businessSeats);
+		flightSchedule.setEconomySeatsAvailable(economySeats);
+		
+		// change price acc to Weekend
 		// Assumption: All airlines have fixed base economy, business price for their
 		// respective flights
-
 		double economy = 0;
 		double business = 0;
 
