@@ -17,4 +17,6 @@ public interface BookingPassengerRepository {
 
 	List<Object[]> viewBooking( int id);
 
+	List<Passengers> fetchAllPassengersByBookingId(int id);
+
 }

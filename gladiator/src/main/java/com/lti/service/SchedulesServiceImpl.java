@@ -105,7 +105,7 @@ public class SchedulesServiceImpl implements SchedulesService {
 		try {
 			return schedulesRepo.fetchSearchedFlights(sfdto, bs, es);
 		}
-		catch(Exception e) {
+		catch(DataAccessException e) {
 			throw new FetchFlightsException("FLIGHTS NOT FOUND");
 		}
 	}

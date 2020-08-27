@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dto.AddBookingDto;
+import com.lti.dto.GenerateTicketDto;
+import com.lti.dto.ViewBookingDto;
 import com.lti.entity.Booking;
 import com.lti.entity.FlightSchedule;
 import com.lti.entity.Passengers;
@@ -81,10 +83,38 @@ public class BookingPassengerServiceImpl implements BookingPassengerService {
 		}
 		
 	}
+	
 	@Override
 	@Transactional
-	public List<Object[]> getAllPassengers(int id){
+	public List<Object[]> getAllPassengers(int id) {
 		return bookingRepo.viewBooking(id);
+	}
+	
+	@Override
+	@Transactional
+	public GenerateTicketDto fetchGeneratedTicket(int userId) {
+		
+		GenerateTicketDto ticket = new GenerateTicketDto();
+		List<Object[]> allBookings = bookingRepo.viewBooking(userId);
+		
+		ViewBookingDto viewBookDt = new ViewBookingDto();
+		
+		viewBookDt.setId((int)allBookings.get(0)[0]);
+		viewBookDt.setBookingDateTime((LocalDateTime)allBookings.get(0)[1]);
+		viewBookDt.setTotalPassengers((int) allBookings.get(0)[2]);
+		viewBookDt.setBookingAmount((double)allBookings.get(0)[3]);
+		viewBookDt.setStatus((String)allBookings.get(0)[4]);
+		viewBookDt.setDepart((LocalDateTime)allBookings.get(0)[5]);
+		viewBookDt.setArrive((LocalDateTime)allBookings.get(0)[6]);
+		viewBookDt.setSource((String)allBookings.get(0)[7]);
+		viewBookDt.setDestination((String)allBookings.get(0)[8]);
+		
+		ticket.setBooking(viewBookDt);
+		
+		ticket.setPassengers(bookingRepo.fetchAllPassengersByBookingId(viewBookDt.getId()));
+		
+		return ticket;
+		
 	}
 	
 	

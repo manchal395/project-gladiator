@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lti.controller.UsersController.Status;
 import com.lti.controller.UsersController.Status.StatusType;
 import com.lti.dto.AddBookingDto;
+import com.lti.dto.GenerateTicketDto;
 import com.lti.dto.ViewBookingDto;
 import com.lti.dto.ViewUserDto;
 import com.lti.exception.BookingServiceException;
@@ -50,12 +52,14 @@ public class BookingPassengerController {
 		
 		
 	}
+	
 	@PostMapping("/viewBooking")
 	public List<ViewBookingDto> viewBooking(@RequestBody ViewUserDto viewUserDto) {
 		List<ViewBookingDto> allPassenger= new ArrayList<ViewBookingDto>();
 		int id= viewUserDto.getUserId();
 		List<Object[]> passengers=bpService.getAllPassengers(id);
 		ViewBookingDto viewBookDt;
+
 		for(Object[] obj : passengers) {
 			viewBookDt=new ViewBookingDto();
 			viewBookDt.setId((int)obj[0]);
@@ -72,6 +76,13 @@ public class BookingPassengerController {
 		return allPassenger;
 	}
 
+	@PostMapping(path = "/viewTicket", consumes = "application/json", produces = "application/json")
+	public GenerateTicketDto generateTicket(@RequestBody ViewUserDto viewUserDto) {
+		
+		GenerateTicketDto ticket = bpService.fetchGeneratedTicket(viewUserDto.getUserId());
+		return ticket;
+		
+	}
 
 	public static class Status {
 		private StatusType status;

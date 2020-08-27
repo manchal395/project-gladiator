@@ -36,8 +36,16 @@ public class BookingPassengerRepositoryImpl implements BookingPassengerRepositor
 	public int fetchBookingScheduleId() {
 		return (int) entityManager.createQuery("SELECT MAX(b.id) FROM Booking b").getSingleResult();
 	}
+	
 	@Override
 	public List<Object[]> viewBooking( int id){
-		return entityManager.createQuery("SELECT b.id, b.bookingDateTime,b.totalPassengers, b.bookingAmount, b.status, s.depart, s.arrive, r.source, r.destination FROM Booking b INNER JOIN b.flightSchedule fs INNER JOIN b.flightSchedule.schedule s  INNER JOIN b.flightSchedule.schedule.route r INNER JOIN b.user u WHERE u.id = :id").setParameter("id", id).getResultList();
+		return entityManager.createQuery("SELECT b.id, b.bookingDateTime,b.totalPassengers, b.bookingAmount, b.status, s.depart, s.arrive, r.source, r.destination FROM Booking b INNER JOIN b.flightSchedule fs INNER JOIN b.flightSchedule.schedule s  INNER JOIN b.flightSchedule.schedule.route r INNER JOIN b.user u WHERE u.id = :id ORDER BY b.bookingDateTime DESC").setParameter("id", id).getResultList();
+	}
+	
+	@Override
+	public List<Passengers> fetchAllPassengersByBookingId(int id) {
+		return entityManager.createQuery("SELECT p FROM Passengers p WHERE p.booking.id = :id")
+				.setParameter("id", id)
+				.getResultList();
 	}
 }
