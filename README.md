@@ -46,7 +46,7 @@ Application is implemented in two parts: <br/>
 - Open the Project
   - After downloading the project clone zip from github, open it in Visual Studio Code
     - File -> Open Folder -> (Navigate to the unzipped path of project clone folder)
-    - <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/Angular_Project_Setup/Open_Project_1.png?raw=true" />
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/Angular_Project_Setup/Open_Project_1.png?raw=true" />
 
 - Install Dependencies
   - Open Visual Studio Code's Terminal
@@ -57,29 +57,35 @@ Application is implemented in two parts: <br/>
     ```
   - <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/Angular_Project_Setup/npm_install.png?raw=true" />
 
-- Run the Angular Application using below command in terminal
-```
-ng serve -o
-```
+  - Run the Angular Application using below command in terminal and press enter 
+    ```
+    ng serve -o
+    ```
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/Angular_Project_Setup/ng_serve_o.png?raw=true" />
+
 
 ### 3. Run Spring Boot Project
 - Open the Project 
   - After downloading the project clone zip from github, open it in SpringToolSuite
-    - <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Open_Project_1.png?raw=true" />
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Open_Project_1.png?raw=true" />
   - Navigate to the unzipped path of project clone folder
-    - <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Open_Project_2.png?raw=true" />
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Open_Project_2.png?raw=true" />
   - Make sure project-gladiator-master/gladiator is selected
-    - <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Open_Project_3.png?raw=true" />
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Open_Project_3.png?raw=true" />
   - Finish
 
 - Syncing the Eclipse project settings with that of the pom
   - Right Click on project 'gladiator' -> Maven -> Update Project
-    - <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Maven_Update_1.png?raw=true" />
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Maven_Update_1.png?raw=true" />
   - Make sure "Force Update of Snapshots/Releases" is checked.
-    - <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Maven_Update_2.png?raw=true" />
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Maven_Update_2.png?raw=true" />
   - OK
 
 - Running the Spring Boot Project
-  - 
+  - Right Click on project 'gladiator' -> Run As -> Spring Boot App
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Run_SpringBootApp.png?raw=true" />
+    - Console 
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/SpringBoot_Project_Setup/Console.png?raw=true" />
 
-- Right click on project -> M
+  - If all goes well, above step will open the application automatically on default web browser. If doesn't flip the system away and try later.
+    <img src="https://github.com/manchal395/Airline-Reservation-SpringBoot-Angular/blob/main/Screenshots/Website/Home_page.png" />
