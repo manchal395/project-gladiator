@@ -31,7 +31,7 @@ Application is implemented in two parts: <br/>
     - Cancel booking
  
  ### Project Details
- - Technologies Used
+- Technologies Used
   - Spring Boot
   - Java 8
   - Hibernate, JPA
@@ -39,7 +39,7 @@ Application is implemented in two parts: <br/>
   - Angular 8
   - HTML. CSS
  
- - Prerequisites
+- Prerequisites
   - SpringToolSuite (https://spring.io/tools)
   - Visual Studio Code (https://code.visualstudio.com/download)
   - SQL Developer (https://www.oracle.com/tools/downloads/sqldev-downloads.html) 
