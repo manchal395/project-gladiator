@@ -47,6 +47,7 @@ Application is implemented in two parts: <br/>
 ## Steps to Run the complete Airline Application (Part A + Part B)
 ### 1. Connect Oracle Database
 > MAC users can refer to this guide for Installing Oracle using Docker (https://github.com/manchal395/Notes/blob/master/Docker_Oracle_MACOS.pdf)
+> Will Update this info in a while
 
 ### 2. Run Angular Project
 - Open the Project
