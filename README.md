@@ -39,6 +39,11 @@ Application is implemented in two parts: <br/>
   - Angular 8
   - HTML. CSS
  
+ - Prerequisites
+  - SpringToolSuite (https://spring.io/tools)
+  - Visual Studio Code (https://code.visualstudio.com/download)
+  - SQL Developer (https://www.oracle.com/tools/downloads/sqldev-downloads.html) 
+ 
 ## Steps to Run the complete Airline Application (Part A + Part B)
 ### 1. Connect Oracle Database
 
